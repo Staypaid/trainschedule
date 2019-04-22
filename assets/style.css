@@ -1,0 +1,50 @@
+body {
+  background-color: #cccccc;
+
+}
+
+.jumbotron{
+
+  background-color: rgb(210, 30, 171) ;
+  font-family: 'Anton', sans-serif;
+  color:white;
+}
+
+h1{
+  text-align: center;
+}
+
+h3{
+text-align: center;
+}
+
+.panel-heading{
+  color:lightpink;
+  background-color: rgb(210, 30, 171) !important;
+  font-family: 'Anton', sans-serif;
+}
+
+table {
+ font-family: arial, sans-serif;
+ border-collapse: collapse;
+ width: 100%;
+}
+
+td, th {
+ border: 1px solid pink;
+ text-align: left;
+ padding: 8px;
+}
+
+tr:nth-child(even) {
+ background-color: #6b6b6b ;
+}
+
+.panel{
+  border-color: #191970 !important;
+}
+
+#add-train{
+color:#FFFFFF;
+background: rgb(210, 30, 171) ;
+}
