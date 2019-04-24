@@ -5,7 +5,7 @@ body {
 
 .jumbotron{
 
-  background-color: rgb(210, 30, 171) ;
+  background-color: lightpink ;
   font-family: 'Anton', sans-serif;
   color:white;
 }
@@ -20,7 +20,7 @@ text-align: center;
 
 .panel-heading{
   color:lightpink;
-  background-color: rgb(210, 30, 171) !important;
+  background-color: lightpink !important;
   font-family: 'Anton', sans-serif;
 }
 
@@ -41,10 +41,10 @@ tr:nth-child(even) {
 }
 
 .panel{
-  border-color: #191970 !important;
+  border-color: lightpink !important;
 }
 
 #add-train{
 color:#FFFFFF;
-background: rgb(210, 30, 171) ;
+background: lightpink ;
 }

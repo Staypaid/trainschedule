@@ -28,7 +28,7 @@ var newTrain = {};;
 
 
 // Capture Button Click
-$("button").on("click", function() {
+$("#button").on("click", function() {
   event.preventDefault();
 
 // Grabs user input
