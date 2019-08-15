@@ -26,65 +26,60 @@ console.log("TrainSchedule"  , TrainSchedule );
 
 var newTrain = {};;
 
-
 // Capture Button Click
-$("#button").on("click", function() {
-  event.preventDefault();
-
-// Grabs user input
-   newTrain.name = $("#trainName").val().trim();
-   newTrain.destination = $("#destination").val().trim();
-   newTrain.frequency = $("#frequency").val().trim();
-   newTrain.firstTrainTime = $("#firstTrain").val().trim();
+$("button").on("click", function() {
+    event.preventDefault();
    
-
-// Logs everything to console
-console.log(newTrain.name);
-console.log(newTrain.destination); 
-console.log(newTrain.firstTrainTime);
-console.log(newTrain.frequency)
-
-TrainSchedule.push(newTrain);
-
-
- 
+   // Grabs user input
+     newTrain.name = $("#trainName").val().trim();
+     newTrain.destination = $("#destination").val().trim();
+     newTrain.frequency = $("#frequency").val().trim();
+     newTrain.firstTrainTime = $("#firstTrain").val().trim();
+   
+   
+   // Logs everything to console
+   console.log(newTrain.name);
+   console.log(newTrain.destination);
+   console.log(newTrain.firstTrainTime);
+   console.log(newTrain.frequency)
+   
+   TrainSchedule.push(newTrain);
 
   // Clears all of the text-boxes
-  $("#trainName").val("");
-  $("#destination").val("");
-  $("#firstTrain").val("");
-  $("#frequency").val("");
-  
-  // Don't refresh the page!
-  return false; 
-});
+ $("#trainName").val("");
+ $("#destination").val("");
+ $("#firstTrain").val("");
+ $("#frequency").val("");
 
+ // Don't refresh the page!
+ return false; 
+});
 
 // Create Firebase event for adding trains to the database and a row in the html when a user adds an entry
 TrainSchedule.on("child_added", function(childSnapshot,  prevChildKey) {
-    var tFrequency = childSnapshot.val().frequency;
-    // Time is 3:30 AM
-    var firstTime = childSnapshot.val().firstTrainTime;
-    // First Time (pushed back 1 year to make sure it comes before current time)
-    var firstTimeConverted = moment(firstTime, "hh:mm").subtract(1, "years");
-    console.log(firstTimeConverted);
-    // Current Time
-    var currentTime = moment();
-    console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
-    // Difference between the times
-    var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
-    console.log("DIFFERENCE IN TIME: " + diffTime);
-    // Time apart (remainder)
-    var tRemainder = diffTime % tFrequency;
-    console.log(tRemainder);
-    // Minute Until Train
-    var tMinutesTillTrain = tFrequency - tRemainder;
-    console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
-    // Next Train
-    var nextTrain = moment().add(tMinutesTillTrain, "minutes").format("hh:mm A");
-    console.log("ARRIVAL TIME: " + nextTrain);
-    
- var newRow = $('<tr><td>'+childSnapshot.val().name+'</td><td>'+childSnapshot.val().destination+'</td><td>'+childSnapshot.val().frequency+'</td><td>'+ nextTrain +'</td><td>'+ tMinutesTillTrain +'</td></tr>');
-            $(".set").append(newRow);
-        
-     });
+   var tFrequency = childSnapshot.val().frequency;
+   // Time is 3:30 AM
+   var firstTime = childSnapshot.val().firstTrainTime;
+   // First Time (pushed back 1 year to make sure it comes before current time)
+   var firstTimeConverted = moment(firstTime, "hh:mm").subtract(1, "years");
+   console.log(firstTimeConverted);
+   // Current Time
+   var currentTime = moment();
+   console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
+   // Difference between the times
+   var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+   console.log("DIFFERENCE IN TIME: " + diffTime);
+   // Time apart (remainder)
+   var tRemainder = diffTime % tFrequency;
+   console.log(tRemainder);
+   // Minute Until Train
+   var tMinutesTillTrain = tFrequency - tRemainder;
+   console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
+   // Next Train
+   var nextTrain = moment().add(tMinutesTillTrain, "minutes").format("hh:mm A");
+   console.log("ARRIVAL TIME: " + nextTrain);
+
+var newRow = $('<tr><td>'+childSnapshot.val().name+'</td><td>'+childSnapshot.val().destination+'</td><td>'+childSnapshot.val().frequency+'</td><td>'+ nextTrain +'</td><td>'+ tMinutesTillTrain +'</td></tr>');
+           $(".set").append(newRow);
+
+    });
